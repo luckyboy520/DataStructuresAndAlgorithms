@@ -4,7 +4,6 @@ package com.luckyboy.sun.dataStructure;
  * 链表的每一个节点都有指定上或者下一个节点的Node
  *
  * **/
-public class SingleList<T> {
 
     //第一个元素
     private Node<T> firstNode;
@@ -32,6 +31,8 @@ public class SingleList<T> {
         System.out.println(singleList.get(0));
         System.out.println(singleList.replace("111",5));
         System.out.println(singleList.toString());
+        //反转单链表
+        System.out.println(singleList.reverseList());
     }
     /**
      * 求单链表节点个数
@@ -64,7 +65,21 @@ public class SingleList<T> {
      * 思路：1.可以把每一个节点放进数组中，然后从数组取出来重新创建一个Node节点
      *
      * */
-
+    public SingleList<T> reverseList() {
+        Node<T> auxiliaryNode = firstNode;
+        Node<Object> newNode = null;
+        Object[] ts = new Object[count];
+        for(int i =0; i < count; i++) {
+            ts[i] = auxiliaryNode.node;
+            auxiliaryNode = auxiliaryNode.next;
+        }
+        newNode = new Node<Object>(ts[count-1], null);
+        for(int j = count-2; j < ts.length; j--) {
+            Node<Object> newNode1 = new Node<>(ts[j],null);
+            newNode.next = newNode1;
+        }
+        return null;
+    }
     /**
      * 增加节点
      * */
