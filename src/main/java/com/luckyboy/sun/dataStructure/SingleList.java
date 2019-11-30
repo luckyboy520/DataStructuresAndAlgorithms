@@ -1,5 +1,9 @@
 package com.luckyboy.sun.dataStructure;
-
+/**
+ * 链表是已节点的形式存储的，不一定是顺序存储
+ * 链表的每一个节点都有指定上或者下一个节点的Node
+ *
+ * **/
 public class SingleList<T> {
 
     //第一个元素
