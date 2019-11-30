@@ -21,7 +21,8 @@ public class SingleList<T> {
         singleList.add("4");
         singleList.add("5");
         singleList.add("6");
-
+        System.out.println(singleList.getSingleListNum());
+        System.out.println(singleList.getCountDownNodeByIndex(3));
         System.out.println(singleList.add("7"));
         System.out.println(singleList.toString());
         System.out.println("========remove start========");
@@ -32,6 +33,37 @@ public class SingleList<T> {
         System.out.println(singleList.replace("111",5));
         System.out.println(singleList.toString());
     }
+    /**
+     * 求单链表节点个数
+     * 因为记录了count值，所以直接返回就好
+     * 该方法是假设没有count值怎么计算
+     * */
+    public int getSingleListNum() {
+        Node<T> auxiliaryNode = firstNode;
+        int count = 1;
+        while (auxiliaryNode.next != null) {
+            auxiliaryNode = auxiliaryNode.next;
+            count++;
+        }
+        return count;
+    }
+    /**
+     * 查找单链表的倒数第k个节点
+     * 思路：顺序count-1-k个节点
+     * */
+    public T getCountDownNodeByIndex(int index) {
+        checkIndex(index);
+        Node<T> auxiliaryNode = firstNode;
+        for(int i =0; i < count-1-index; i++) {
+            auxiliaryNode = auxiliaryNode.next;
+        }
+        return auxiliaryNode.node;
+    }
+    /**
+     * 单链表的反转
+     * 思路：1.可以把每一个节点放进数组中，然后从数组取出来重新创建一个Node节点
+     * 
+     * */
 
     /**
      * 增加节点
