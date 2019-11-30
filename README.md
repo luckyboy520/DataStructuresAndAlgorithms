@@ -1,2 +1,2 @@
 # DataStructuresAndAlgorithms
-this is data structures and algorithms demo
+自己学习java版数据结构与算法的demo记录
