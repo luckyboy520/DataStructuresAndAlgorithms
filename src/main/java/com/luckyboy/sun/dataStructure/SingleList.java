@@ -4,7 +4,7 @@ package com.luckyboy.sun.dataStructure;
  * 链表的每一个节点都有指定上或者下一个节点的Node
  *
  * **/
-
+public class SingleList<T> {
     //第一个元素
     private Node<T> firstNode;
     //最后一个元素
@@ -74,7 +74,7 @@ package com.luckyboy.sun.dataStructure;
             auxiliaryNode = auxiliaryNode.next;
         }
         newNode = new Node<Object>(ts[count-1], null);
-        for(int j = count-2; j < ts.length; j--) {
+        for(int j = count-2; j >0; j--) {
             Node<Object> newNode1 = new Node<>(ts[j],null);
             newNode.next = newNode1;
         }
