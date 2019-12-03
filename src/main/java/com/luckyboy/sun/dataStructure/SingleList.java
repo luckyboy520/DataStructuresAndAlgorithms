@@ -32,7 +32,8 @@ public class SingleList<T> {
         System.out.println(singleList.replace("111",5));
         System.out.println(singleList.toString());
         //反转单链表
-        System.out.println(singleList.reverseList());
+        singleList.reverseList();
+        System.out.println(singleList.toString());
     }
     /**
      * 求单链表节点个数
@@ -65,20 +66,29 @@ public class SingleList<T> {
      * 思路：1.可以把每一个节点放进数组中，然后从数组取出来重新创建一个Node节点
      *
      * */
-    public SingleList<T> reverseList() {
-        Node<T> auxiliaryNode = firstNode;
-        Node<Object> newNode = null;
+    public void reverseList() {
+        Node auxiliaryNode = firstNode;
+        Node newNode = null;
         Object[] ts = new Object[count];
         for(int i =0; i < count; i++) {
             ts[i] = auxiliaryNode.node;
             auxiliaryNode = auxiliaryNode.next;
         }
         newNode = new Node<Object>(ts[count-1], null);
-        for(int j = count-2; j >0; j--) {
-            Node<Object> newNode1 = new Node<>(ts[j],null);
-            newNode.next = newNode1;
+        Node<Object> newNode1 = null;
+        for(int j = count-2; j >= 0; j--) {
+            Node<Object> newNode2 = new Node<>(ts[j],null);
+            if(newNode1 == null) {
+                newNode.next = newNode2;
+                newNode1 = newNode.next;
+            }
+            else {
+                newNode1.next = newNode2;
+                newNode1 = newNode1.next;
+            }
         }
-        return null;
+        System.out.println(newNode);
+        this.firstNode = newNode;
     }
     /**
      * 增加节点
