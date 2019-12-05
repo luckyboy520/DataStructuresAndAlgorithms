@@ -29,6 +29,7 @@ public class DoublyLinkedList<T> {
             lastNode = node;
         } else {
             node = new Node<>(e,lastNode,null);
+            lastNode.next = node;
             lastNode = node;
         }
         count++;
