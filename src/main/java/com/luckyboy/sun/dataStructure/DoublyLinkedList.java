@@ -12,13 +12,13 @@ public class DoublyLinkedList<T> {
         linkedList.add("2");
         linkedList.add("3");
         linkedList.add("4");
-        System.out.println(linkedList.toString());
-        System.out.println(linkedList.count);
-        linkedList.remove();
-        System.out.println(linkedList.toString());
-        System.out.println(linkedList.count);
+        System.out.println(linkedList);
+//        System.out.println(linkedList.count);
+//        linkedList.remove();
+//        System.out.println(linkedList.toString());
+//        System.out.println(linkedList.count);
         linkedList.remove(2);
-        System.out.println(linkedList.toString());
+        System.out.println(linkedList);
     }
 
 
@@ -74,7 +74,7 @@ public class DoublyLinkedList<T> {
             lastNode.next = null;
         } else {
             Node<T> node = firstNode;
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < index; i++) {
                 node = node.next;
             }
             //保留要删除节点的前结点
@@ -100,12 +100,15 @@ public class DoublyLinkedList<T> {
         //定义一个辅助节点，不要改变firstNode的值
         Node<T> node = firstNode;
         StringBuffer buffer = new StringBuffer();
-        while (node.next != null) {
+//        if(firstNode != null) {
+            while (node.next != null) {
+                buffer.append(node.node);
+                node = node.next;
+            }
             buffer.append(node.node);
-            node = node.next;
-        }
-        buffer.append(node.node);
-        return buffer.toString();
+            return buffer.toString();
+//        }
+//        return null;
     }
 
     class Node<T> {
@@ -130,13 +133,5 @@ public class DoublyLinkedList<T> {
             this.node = node;
         }
 
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "node=" + node +
-                    ", pre=" + pre +
-                    ", next=" + next +
-                    '}';
-        }
     }
 }
