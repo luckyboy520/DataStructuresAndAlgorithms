@@ -1,5 +1,7 @@
 package com.luckyboy.sun.dataStructure;
 
+import org.omg.CORBA.NO_IMPLEMENT;
+
 public class DoublyLinkedList<T> {
 
     private Node<T> firstNode;
@@ -7,20 +9,32 @@ public class DoublyLinkedList<T> {
     private int count;
 
     public static void main(String[] args) {
+
+        for(int i =1;i<1;i++) {
+            System.out.println("1111");
+        }
         DoublyLinkedList<String> linkedList = new DoublyLinkedList<>();
         linkedList.add("1");
         linkedList.add("2");
         linkedList.add("3");
         linkedList.add("4");
         System.out.println(linkedList);
-//        System.out.println(linkedList.count);
+        System.out.println(linkedList.count);
 //        linkedList.remove();
 //        System.out.println(linkedList.toString());
+        linkedList.add("5");
+        linkedList.add("6");
+//        linkedList.add(5,"111");
+//        System.out.println(linkedList.toString());
+//        linkedList.add(1,"222");
+//        System.out.println(linkedList.toString());
+        linkedList.add(3,"9");
+        System.out.println(linkedList.toString());
+        System.out.println(linkedList.get(3));
 //        System.out.println(linkedList.count);
-        linkedList.remove(2);
-        System.out.println(linkedList);
+//        linkedList.remove(2);
+//        System.out.println(linkedList);
     }
-
 
     /**
      * @author xieh
@@ -51,6 +65,40 @@ public class DoublyLinkedList<T> {
     }
 
     /**
+     * 增加节点-指定位置
+     * */
+    public int add(int index, T e) {
+        checkIndex(index);
+        Node<T> node = null;
+        if(index == 1) {
+            node = firstNode;
+            firstNode = new Node<T>(e,null, node.next);
+            return ++count;
+        } else if(index == count) {
+            node = lastNode;
+            lastNode = new Node<T>(e, lastNode,null);
+            node.next = lastNode;
+            return ++count;
+        }else if(index < count/2) {
+            node = firstNode;
+            for(int i = 1; i < index; i++) {
+                node = node.next;
+            }
+
+        } else {
+            node = lastNode;
+            for(int i = 0; i < count - index; i++) {
+                node = node.pre;
+            }
+        }
+        Node<T> pre = node.pre;
+        Node<T> next = node.next;
+        Node<T> newNode = new Node<>(e, node.pre, node.next);
+        pre.next = newNode;
+        next.pre = newNode;
+        return ++count;
+    }
+    /**
      * 删除节点
      * */
     public void remove() {
@@ -69,7 +117,7 @@ public class DoublyLinkedList<T> {
         if(count == 0) {
             firstNode = firstNode.next;
             firstNode.pre = null;
-        } else if(count-1 == index) {
+        } else if(count == index) {
             lastNode = lastNode.pre;
             lastNode.next = null;
         } else {
@@ -87,13 +135,36 @@ public class DoublyLinkedList<T> {
         count--;
     }
 
+
+    /**
+     * 获取节点
+     * */
+    public T get(int index) {
+        checkIndex(index);
+        if(index == 1) return firstNode.node;
+        if(index == count) return lastNode.node;
+        Node<T> node = null;
+        if(index <= count/2) {
+            node = firstNode;
+            for(int i = 1; i < index;i++) {
+                node = node.next;
+            }
+            return node.node;
+        } else {
+            node = lastNode;
+            for(int i = index; i > 0; i--) {
+                node = node.pre;
+            }
+            return node.node;
+        }
+    }
     /**
      * 判断index是否异常
      * @param index
      * */
     public void checkIndex(int index) {
         if(index < 0) throw new RuntimeException("index不能小于0");
-        if(index > count-1) throw new RuntimeException("index超过数组本身");
+        if(index > count) throw new RuntimeException("index超过数组本身");
     }
     @Override
     public String toString() {
