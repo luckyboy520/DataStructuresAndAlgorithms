@@ -63,5 +63,13 @@ public class OneTest {
         }).collect(Collectors.toList());
 
         System.out.println(list);
+
+        //其实还有另一种简单的方法，使用strem直接搞就行
+        List<OneTest> collect = oneTests1.stream().filter(oneTest ->
+                !oneTests2.stream().map(OneTest::getNum).collect(Collectors.toList()).contains(oneTest.getNum())
+        ).collect(Collectors.toList());
+
+        System.out.println("====" + collect);
+
     }
 }
