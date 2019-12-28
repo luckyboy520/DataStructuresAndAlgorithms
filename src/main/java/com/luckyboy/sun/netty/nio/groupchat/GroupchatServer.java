@@ -5,10 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.util.Iterator;
 
 /**
@@ -43,34 +40,36 @@ public class GroupchatServer {
     */
     public void listen() throws IOException {
         log.info("监听线程：", Thread.currentThread().getName());
+      while (true) {
+          //从选择器获取是否有通道,大于0则代表有事件处理
+          if (selector.select() > 0) {
+              //获取所有selecctionKey
+              Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
+              while (iterator.hasNext()) {
+                  SelectionKey selectionKey = iterator.next();
 
-        //从选择器获取是否有通道,大于0则代表有事件处理
-        if(selector.select() > 0) {
-            //获取所有selecctionKey
-            Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
-            while(iterator.hasNext()) {
-                SelectionKey selectionKey = iterator.next();
+                  //判断是什么事件，如果是接收事件，第一次默认都是接收事件
+                  if (selectionKey.isAcceptable()) {
+                      //因为第一次还没有创建通道，需要通过serverChannel创建
+                      SocketChannel accept = serverSocketChannel.accept();
+                      //设置为非阻塞
+                      accept.configureBlocking(false);
+                      //把这个通道注册到选择器，设置为读
+                      accept.register(selector, SelectionKey.OP_READ);
+                      //提示下是哪个客户端上线了
+                      log.info("客户端：{}，上线", accept.getRemoteAddress());
+                  }
 
-                //判断是什么事件，如果是接收事件，第一次默认都是接收事件
-                if(selectionKey.isAcceptable()) {
-                    //因为第一次还没有创建通道，需要通过serverChannel创建
-                    SocketChannel accept = serverSocketChannel.accept();
-                    //设置为非阻塞
-                    accept.configureBlocking(false);
-                    //把这个通道注册到选择器，设置为读
-                    accept.register(selector, SelectionKey.OP_READ);
-                    //提示下是哪个客户端上线了
-                    log.info("客户端：{}，上线", accept.getRemoteAddress());
-                }
+                  //如果是可读事件，就是客户端发送数据过来
+                  if (selectionKey.isReadable()) {
+                      readData(selectionKey);
+                  }
 
-                //如果是可读事件，就是客户端发送数据过来
-                if(selectionKey.isReadable()) {
-                    readData(selectionKey);
-                }
-
-
-            }
-        }
+                  //当前的key 删除，防止重复处理
+                  iterator.remove();
+              }
+          }
+      }
     }
     /**
      * @author xieh
@@ -120,11 +119,14 @@ public class GroupchatServer {
         //遍历所有的通道判断是否是该客户端本身
         selector.keys().forEach(selectionKey -> {
             //获取通道
-            SocketChannel channel1 = (SocketChannel) selectionKey.channel();
+            Channel channel1 = selectionKey.channel();
             if(channel1 instanceof SocketChannel && channel1 != channel) {
+                SocketChannel dest = (SocketChannel)channel1;
+
                 ByteBuffer byteBuffer = ByteBuffer.wrap(msg.getBytes());
                 try {
-                    channel1.write(byteBuffer);
+                    dest.write(byteBuffer);
+                    log.info("服务器转发信息成功");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
