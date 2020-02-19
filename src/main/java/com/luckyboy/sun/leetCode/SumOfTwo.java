@@ -23,7 +23,7 @@ import java.util.List;
  *
  * **************************************
  **/
-public class Solution {
+public class SumOfTwo {
     public static void main(String[] args) {
         int[] nums = new int[]{2, 7, 11, 15,5,4};
         int target = 9;
