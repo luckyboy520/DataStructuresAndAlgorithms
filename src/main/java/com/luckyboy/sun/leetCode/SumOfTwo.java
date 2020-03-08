@@ -31,6 +31,13 @@ public class SumOfTwo {
         int[] ints = twoSum(nums, target);
         System.out.println("用时：" + (System.currentTimeMillis() - start));
         System.out.println(Arrays.toString(ints));
+
+        try {
+            int i = 10/0;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("hahaha");
     }
 
 
