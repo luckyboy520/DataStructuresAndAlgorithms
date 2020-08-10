@@ -1,6 +1,7 @@
 package com.luckyboy.sun.netty.nio.groupchat;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -16,8 +17,9 @@ import java.util.Iterator;
  *
  *
  */
-@Slf4j
 public class GroupchatServer {
+    private static final Logger log = LoggerFactory.getLogger(GroupchatServer.class);
+
     private Selector selector = Selector.open();
     private static Integer SERVER_PORT = 6667;
     private ServerSocketChannel serverSocketChannel;

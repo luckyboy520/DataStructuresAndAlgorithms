@@ -7,15 +7,18 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author xieh
  * @date 2019/12/31 10:49
  * netty服务端代码demo
  */
-@Slf4j
+
 public class NettyServer {
+    private static final Logger log = LoggerFactory.getLogger(NettyServer.class);
+
     /**
      * netty总包括两个线程组，Bossgroup和workerGroup
      * Bossgroup只负责处理接收请求，workerGroup才是真正处理客户端的请求

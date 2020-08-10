@@ -6,7 +6,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 
@@ -14,8 +15,9 @@ import java.net.URI;
  * @author xieh
  * @date 2019/12/31 15:37
  */
-@Slf4j
 public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
+    private static final Logger log = LoggerFactory.getLogger(HttpServerHandler.class);
+
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
 

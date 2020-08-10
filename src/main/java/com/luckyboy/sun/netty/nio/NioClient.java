@@ -1,6 +1,7 @@
 package com.luckyboy.sun.netty.nio;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -11,8 +12,9 @@ import java.nio.channels.SocketChannel;
  * @author xieh
  * @date 2019/12/18 17:43
  */
-@Slf4j
 public class NioClient {
+    private static final Logger log = LoggerFactory.getLogger(NioClient.class);
+
     public static void main(String[] args) throws IOException {
         //创建一个SocketChannel
         SocketChannel open = SocketChannel.open();

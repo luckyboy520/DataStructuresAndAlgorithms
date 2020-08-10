@@ -5,15 +5,16 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author xieh
  * @date 2019/12/31 15:18
  * netty基于http协议的服务端，客户端为浏览器
  */
-@Slf4j
 public class NettyHttpServer {
+    private static final Logger log = LoggerFactory.getLogger(NettyHttpServer.class);
 
     public static void main(String[] args) {
         EventLoopGroup bossGroup = new NioEventLoopGroup();

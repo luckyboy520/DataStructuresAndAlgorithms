@@ -1,6 +1,7 @@
 package com.luckyboy.sun.netty.nio.groupchat;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -15,8 +16,10 @@ import java.util.Scanner;
  * @author xieh
  * @date 2019/12/28 15:25
  */
-@Slf4j
+
 public class GroupchatClient {
+    private static final Logger log = LoggerFactory.getLogger(GroupchatClient.class);
+
     private final String HOST = "127.0.0.1"; // 服务器的ip
     private Selector selector;
     private static Integer SERVER_POST = 6667;

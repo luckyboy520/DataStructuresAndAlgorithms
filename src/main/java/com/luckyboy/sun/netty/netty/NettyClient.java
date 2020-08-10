@@ -7,15 +7,18 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author xieh
  * @date 2019/12/31 14:55
  * netty-demo客户端
  */
-@Slf4j
+
 public class NettyClient {
+    private static final Logger log = LoggerFactory.getLogger(NettyClient.class);
+
     public static void main(String[] args) {
         EventLoopGroup group = new NioEventLoopGroup();
 

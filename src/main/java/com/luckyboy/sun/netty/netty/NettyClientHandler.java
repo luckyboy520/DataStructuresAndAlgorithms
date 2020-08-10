@@ -5,15 +5,18 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author xieh
  * @date 2019/12/31 15:02
  * netty-demo 客户端处理器
  */
-@Slf4j
+
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
+    private static final Logger log = LoggerFactory.getLogger(NettyClientHandler.class);
+
     /**
      * @author xieh
      * @date 2019/12/31 15:04
