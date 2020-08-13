@@ -39,7 +39,7 @@ public class NioServer {
         //循环接收客户端的请求
         while (true) {
             //等待一秒，如果没有事件发生则返回
-            if(selector.select(1000) == 0) {
+            if (selector.select(1000) == 0) {
                 log.info("服务等待了1秒，无连接");
                 continue;
             }
@@ -55,7 +55,7 @@ public class NioServer {
             while (iterator.hasNext()) {
                 SelectionKey next = iterator.next();
                 //判断是什么事件,如果是接收事件，则代表第一次连接
-                if(next.isAcceptable()) {
+                if (next.isAcceptable()) {
                     //通过通道获取到socketChannel
                     SocketChannel accept = serverSocketChannel.accept();
                     log.info("客户端连接成功，生成一个socketChannel {}", accept.hashCode());
@@ -67,7 +67,7 @@ public class NioServer {
                     log.info("客户端连接后，注册的selectionKey数量 = {}", selector.keys().size());
                 }
 
-                if(next.isReadable()) {
+                if (next.isReadable()) {
                     //通过key反向获取channel
                     SocketChannel channel = (SocketChannel) next.channel();
                     //获取到该channel关联的buffer,这个时候的buffer是没东西的

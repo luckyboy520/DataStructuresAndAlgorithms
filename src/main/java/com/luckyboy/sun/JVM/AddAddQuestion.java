@@ -7,7 +7,7 @@ public class AddAddQuestion {
         question.add();
     }
 
-    public void add () {
+    public void add() {
         //第一类问题
         int a = 10;
         a++;

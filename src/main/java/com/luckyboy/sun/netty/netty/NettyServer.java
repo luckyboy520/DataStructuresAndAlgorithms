@@ -24,8 +24,8 @@ public class NettyServer {
      * Bossgroup只负责处理接收请求，workerGroup才是真正处理客户端的请求
      * 两个都是无限循环
      * 他们的子线程个数都是cpu内核数*2
-     * */
-    public static void main(String[] args)  {
+     */
+    public static void main(String[] args) {
         NioEventLoopGroup bossGroup = new NioEventLoopGroup(1);
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
         ServerBootstrap serverBootstrap = new ServerBootstrap();
@@ -52,7 +52,7 @@ public class NettyServer {
 
             //可以给cf注册监听器，监听想关心的事件
             cf.addListener((x) -> {
-                if(x.isSuccess()) {
+                if (x.isSuccess()) {
                     log.info("监听端口 6668 成功");
                 } else {
                     log.info("监听端口6668 失败");

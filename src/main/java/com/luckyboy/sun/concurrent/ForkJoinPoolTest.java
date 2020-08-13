@@ -14,7 +14,7 @@ import java.util.concurrent.RecursiveTask;
 public class ForkJoinPoolTest {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        for(int i=0; i< 10; i++) {
+        for (int i = 0; i < 10; i++) {
             ForkJoinTask<Integer> submit = forkJoinPool.submit(new test(i));
             System.out.println(submit.get());
         }
@@ -31,11 +31,11 @@ class test extends RecursiveTask<Integer> {
 
     @Override
     protected Integer compute() {
-        if(n <= 1)
+        if (n <= 1)
             return n;
-        test test = new test(n -1);
+        test test = new test(n - 1);
         test.fork();
-        test test1 = new test(n-2);
+        test test1 = new test(n - 2);
         test1.fork();
         return test.join() + test1.join();
     }

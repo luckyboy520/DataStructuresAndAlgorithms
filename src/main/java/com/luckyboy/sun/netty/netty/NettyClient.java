@@ -22,7 +22,7 @@ public class NettyClient {
     public static void main(String[] args) {
         EventLoopGroup group = new NioEventLoopGroup();
 
-        try{
+        try {
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(group).channel(NioSocketChannel.class)
                     .handler(new ChannelInitializer<SocketChannel>() {

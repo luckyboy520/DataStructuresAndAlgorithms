@@ -1,8 +1,6 @@
 package com.luckyboy.sun.leetCode;
 
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
@@ -69,9 +67,9 @@ class AddTwoNumbers {
          * **/
         //定义一个辅助节点
         ListNode fuzhu = null;
-        for(int i =1; i< split.length;i++) {
+        for (int i = 1; i < split.length; i++) {
             ListNode node1 = new ListNode(Integer.valueOf(split[i]));
-            if(i ==1) {
+            if (i == 1) {
                 node.next = node1;
             } else {
                 fuzhu.next = node1;
@@ -81,13 +79,14 @@ class AddTwoNumbers {
         }
         return node;
     }
+
     public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(9);
         node1.next = node2;
 
         ListNode node3 = new ListNode(3);
-        ListNode node4 =  new ListNode(7);
+        ListNode node4 = new ListNode(7);
         node3.next = node4;
 
         ListNode node5 = addTwoNumbers(node1, node3);
@@ -105,7 +104,7 @@ class AddTwoNumbers {
         BigInteger bi2 = new BigInteger("50");
 
         //public BigInteger add(BigInteger val):加
-        System.out.println("add:"+bi1.add(bi2));
+        System.out.println("add:" + bi1.add(bi2));
 
     }
 }

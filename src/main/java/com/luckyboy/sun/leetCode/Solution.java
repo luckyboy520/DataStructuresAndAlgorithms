@@ -9,13 +9,13 @@ public class Solution {
     }
 
     public static String longestPalindrome(String s) {
-        if(s.equals(""))
+        if (s.equals(""))
             return "";
         //记录字符串和它的长度
         Map<Integer, String> map = new HashMap<>(16);
 
         String[] split = s.split("");
-        if(split.length == 1)
+        if (split.length == 1)
             return split[0];
         for (int i = 0; i < split.length; i++) {
             for (int j = i + 1; j < split.length; j++) {
@@ -23,14 +23,14 @@ public class Solution {
                 if (split[i].equals(split[j])) {
                     String substring = s.substring(i, j + 1);
                     boolean b = doThing(substring);
-                    if(b) {
+                    if (b) {
                         map.put(substring.length(), substring);
                     }
                 }
                 continue;
             }
         }
-        if(map.size() > 0 ) {
+        if (map.size() > 0) {
             Integer integer = map.keySet().stream().max(Integer::compareTo).get();
             return map.get(integer);
         } else {
@@ -45,7 +45,7 @@ public class Solution {
         int num = split.length / 2;
 
         for (int i = 0; i < num; i++) {
-            if (split[i].equals(split[split.length - 1-i])) {
+            if (split[i].equals(split[split.length - 1 - i])) {
                 if (i == num - 1) {
                     flag = true;
                 }
@@ -81,6 +81,6 @@ public class Solution {
 
             }
 
-	return s.substring(maxEnd - maxLen + 1, maxEnd + 1);
-}
+        return s.substring(maxEnd - maxLen + 1, maxEnd + 1);
+    }
 }

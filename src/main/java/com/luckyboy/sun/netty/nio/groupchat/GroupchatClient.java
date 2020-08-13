@@ -64,19 +64,20 @@ public class GroupchatClient {
             client.sendInfo(line);
         }
     }
+
     /**
+     * @return
      * @author xieh
      * @date 2019/12/28 16:03
      * 从服务端读取数据
-     * @return
-    */
+     */
     private void readInfo() throws IOException {
         int readCannels = selector.select();
-        if(readCannels > 0) {
+        if (readCannels > 0) {
             Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
             while (iterator.hasNext()) {
                 SelectionKey selectionKey = iterator.next();
-                if(selectionKey.isReadable()) {
+                if (selectionKey.isReadable()) {
                     SocketChannel channel = (SocketChannel) selectionKey.channel();
                     //得到一个buffer
                     ByteBuffer allocate = ByteBuffer.allocate(1024);
@@ -90,13 +91,14 @@ public class GroupchatClient {
         }
 
     }
+
     /**
+     * @return
      * @author xieh
      * @date 2019/12/28 16:03
      * 向服务端发送消息
-     * @return
-    */
-    private  void sendInfo(String line) {
+     */
+    private void sendInfo(String line) {
         String message = username + " 说：" + line;
         ByteBuffer byteBuffer = ByteBuffer.wrap(message.getBytes());
         try {

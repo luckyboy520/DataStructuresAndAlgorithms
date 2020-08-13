@@ -1,6 +1,9 @@
 package com.luckyboy.sun.leetCode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
@@ -17,23 +20,23 @@ import java.util.*;
  * 示例 2：
  * 输入: "cbbd"
  * 输出: "bb"
- *
+ * <p>
  * &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
  * ArrayList有两个，需要复制时，不能直接用等于，会公用同一个地址，要使用allAll方法
- *
+ * <p>
  * &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
  * 主要思路：使用lastindexof方法找到前后相同的元素，现找到最后一个，不匹配把最后一个去掉再重新找，找到则直接跳出当前循环
  * 每一个元素都要这样。
  * 主要使用技术:StringBuffer的反转方法和string的lastindexOf方法
- *
  */
 public class LongestPalindrome {
     private static int ie = 0;
+
     /**
      * 有几种情况是直接返回的
      * 1.当长度为1时，直接返回改字符串
      * 2.当字符串每一个相同字符时，是默认返回第一个
-     * */
+     */
     public static String longestPalindrome(String s) {
         if (s.equals(""))
             return "";
@@ -55,7 +58,7 @@ public class LongestPalindrome {
 
             while (strings1.size() > 0) {
                 int i1 = strings1.lastIndexOf(item);
-                if (i1 != -1 && i1 !=0 && (i1 > i)) {
+                if (i1 != -1 && i1 != 0 && (i1 > i)) {
                     String substring = s.substring(i, i1 + 1);
                     boolean b = doThing(substring);
                     if (b) {
@@ -98,13 +101,14 @@ public class LongestPalindrome {
         return flag;
     }
 */
+
     /**
      * 方案二：这个方案的思路是基于StringBuffer的反转方法的，二分法把字符串拆开，把另一半反转再和那个比较，相等则成功，耗时是100ms左右，通过了力扣的测试
-     * */
+     */
     public static boolean doThing(String one) {
         int length = one.length();
         int numa = 0;
-        if(length % 2 == 0 ) {
+        if (length % 2 == 0) {
             numa = length / 2;
         } else {
             numa = (length / 2) + 1;
@@ -114,7 +118,7 @@ public class LongestPalindrome {
         String lastHalf = one.substring(numa, length);
 
         String s = new StringBuffer(lastHalf).reverse().toString();
-        if(firstHalf.equals(s)) {
+        if (firstHalf.equals(s)) {
             return true;
         }
         return false;

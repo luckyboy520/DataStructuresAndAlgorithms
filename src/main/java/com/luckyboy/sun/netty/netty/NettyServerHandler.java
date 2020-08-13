@@ -17,13 +17,13 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     private static final Logger log = LoggerFactory.getLogger(NettyServerHandler.class);
 
     /**
+     * @return
      * @author xieh
      * @date 2019/12/31 14:33
      * 获取客户端发送过来的消息
      * 1.ctx就是上下文对象，有管道pipeline，通道channel，地址
      * 2.msg就是发送的内容
-     * @return
-    */
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         log.info("服务器读取线程 {}, channel是 {}", Thread.currentThread().getName(), ctx.channel());
@@ -36,22 +36,24 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
         log.info("client address is {}", ctx.channel().remoteAddress());
 
     }
+
     /**
+     * @return
      * @author xieh
      * @date 2019/12/31 14:51
      * 数据读取完成后的回复
-     * @return
-    */
+     */
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         ctx.writeAndFlush(Unpooled.copiedBuffer("hello, 客户端~~1", CharsetUtil.UTF_8));
     }
+
     /**
+     * @return
      * @author xieh
      * @date 2019/12/31 14:53
      * 处理异常
-     * @return
-    */
+     */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         ctx.close();

@@ -11,7 +11,8 @@ import java.util.concurrent.Executors;
  * @create: 2020-08-03 16:42
  **/
 public class ShutDownTest {
-    private static int a=1;
+    private static int a = 1;
+
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(4);
         executorService.execute(() -> {
@@ -24,7 +25,7 @@ public class ShutDownTest {
             System.out.println(runnable.toString());
         });
         Thread.sleep(2000);
-            System.out.println(a);
+        System.out.println(a);
 
 
     }

@@ -1,9 +1,10 @@
 package com.luckyboy.sun.test;
 
 import org.apache.commons.lang3.StringUtils;
+
 /**
  * 测试两个list取差值
- * **/
+ **/
 public class OneTest {
     private Integer num;
 
@@ -71,13 +72,13 @@ public class OneTest {
     }
 
     @org.junit.Test
-    public void one () {
+    public void one() {
         String user_name = "爱华丢丢(10020)";
         String user_number = "";
         //处理公共参加码user_number替换为自己的customer_id
-        if(user_name != null &&user_name.contains("(")&&user_name.contains(")")) {
-            String temp = user_name.substring(user_name.indexOf("(")+1,user_name.indexOf(")"));
-            if(StringUtils.isNumeric(temp)) {
+        if (user_name != null && user_name.contains("(") && user_name.contains(")")) {
+            String temp = user_name.substring(user_name.indexOf("(") + 1, user_name.indexOf(")"));
+            if (StringUtils.isNumeric(temp)) {
                 user_number = temp;
             }
         }

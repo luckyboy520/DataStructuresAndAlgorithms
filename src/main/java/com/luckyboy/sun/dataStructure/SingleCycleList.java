@@ -15,4 +15,5 @@ public class SingleCycleList {
      *         定义两个指针first和first的前一个元素，first前一个和first之间的元素删除
      *            就是说first前一个的next指定first就可以实现把它们中间的元素删除了
      *
-     * */}
+     * */
+}

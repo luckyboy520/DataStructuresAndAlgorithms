@@ -1,7 +1,5 @@
 package com.luckyboy.sun.dataStructure;
 
-import org.omg.CORBA.NO_IMPLEMENT;
-
 public class DoublyLinkedList<T> {
 
     private Node<T> firstNode;
@@ -10,7 +8,7 @@ public class DoublyLinkedList<T> {
 
     public static void main(String[] args) {
 
-        for(int i =1;i<1;i++) {
+        for (int i = 1; i < 1; i++) {
             System.out.println("1111");
         }
         DoublyLinkedList<String> linkedList = new DoublyLinkedList<>();
@@ -28,7 +26,7 @@ public class DoublyLinkedList<T> {
 //        System.out.println(linkedList.toString());
 //        linkedList.add(1,"222");
 //        System.out.println(linkedList.toString());
-        linkedList.add(3,"9");
+        linkedList.add(3, "9");
         System.out.println(linkedList.toString());
         System.out.println(linkedList.get(3));
 //        System.out.println(linkedList.count);
@@ -37,18 +35,18 @@ public class DoublyLinkedList<T> {
     }
 
     /**
+     * @return
      * @author xieh
      * @date
-     * @return
-    */
+     */
     public int add(T e) {
         Node<T> node = null;
-        if(firstNode == null) {
-            node = new Node<>(e, null,null);
+        if (firstNode == null) {
+            node = new Node<>(e, null, null);
             firstNode = node;
             lastNode = node;
         } else {
-            if(firstNode.next == null) {
+            if (firstNode.next == null) {
                 node = new Node<>(e, firstNode, null);
                 firstNode.next = node;
                 lastNode = node;
@@ -66,28 +64,28 @@ public class DoublyLinkedList<T> {
 
     /**
      * 增加节点-指定位置
-     * */
+     */
     public int add(int index, T e) {
         checkIndex(index);
         Node<T> node = null;
-        if(index == 1) {
+        if (index == 1) {
             node = firstNode;
-            firstNode = new Node<T>(e,null, node.next);
+            firstNode = new Node<T>(e, null, node.next);
             return ++count;
-        } else if(index == count) {
+        } else if (index == count) {
             node = lastNode;
-            lastNode = new Node<T>(e, lastNode,null);
+            lastNode = new Node<T>(e, lastNode, null);
             node.next = lastNode;
             return ++count;
-        }else if(index < count/2) {
+        } else if (index < count / 2) {
             node = firstNode;
-            for(int i = 1; i < index; i++) {
+            for (int i = 1; i < index; i++) {
                 node = node.next;
             }
 
         } else {
             node = lastNode;
-            for(int i = 0; i < count - index; i++) {
+            for (int i = 0; i < count - index; i++) {
                 node = node.pre;
             }
         }
@@ -98,11 +96,12 @@ public class DoublyLinkedList<T> {
         next.pre = newNode;
         return ++count;
     }
+
     /**
      * 删除节点
-     * */
+     */
     public void remove() {
-        if(firstNode == null) throw new RuntimeException("节点为空");
+        if (firstNode == null) throw new RuntimeException("节点为空");
         Node<T> preNode = lastNode.pre;
         lastNode = preNode;
         lastNode.next = null;
@@ -111,13 +110,13 @@ public class DoublyLinkedList<T> {
 
     /**
      * 删除指定节点
-     * */
+     */
     public void remove(int index) {
         checkIndex(index);
-        if(count == 0) {
+        if (count == 0) {
             firstNode = firstNode.next;
             firstNode.pre = null;
-        } else if(count == index) {
+        } else if (count == index) {
             lastNode = lastNode.pre;
             lastNode.next = null;
         } else {
@@ -138,46 +137,49 @@ public class DoublyLinkedList<T> {
 
     /**
      * 获取节点
-     * */
+     */
     public T get(int index) {
         checkIndex(index);
-        if(index == 1) return firstNode.node;
-        if(index == count) return lastNode.node;
+        if (index == 1) return firstNode.node;
+        if (index == count) return lastNode.node;
         Node<T> node = null;
-        if(index <= count/2) {
+        if (index <= count / 2) {
             node = firstNode;
-            for(int i = 1; i < index;i++) {
+            for (int i = 1; i < index; i++) {
                 node = node.next;
             }
             return node.node;
         } else {
             node = lastNode;
-            for(int i = index; i > 0; i--) {
+            for (int i = index; i > 0; i--) {
                 node = node.pre;
             }
             return node.node;
         }
     }
+
     /**
      * 判断index是否异常
+     *
      * @param index
-     * */
+     */
     public void checkIndex(int index) {
-        if(index < 0) throw new RuntimeException("index不能小于0");
-        if(index > count) throw new RuntimeException("index超过数组本身");
+        if (index < 0) throw new RuntimeException("index不能小于0");
+        if (index > count) throw new RuntimeException("index超过数组本身");
     }
+
     @Override
     public String toString() {
         //定义一个辅助节点，不要改变firstNode的值
         Node<T> node = firstNode;
         StringBuffer buffer = new StringBuffer();
 //        if(firstNode != null) {
-            while (node.next != null) {
-                buffer.append(node.node);
-                node = node.next;
-            }
+        while (node.next != null) {
             buffer.append(node.node);
-            return buffer.toString();
+            node = node.next;
+        }
+        buffer.append(node.node);
+        return buffer.toString();
 //        }
 //        return null;
     }

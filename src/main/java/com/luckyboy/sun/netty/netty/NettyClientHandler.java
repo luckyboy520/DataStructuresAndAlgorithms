@@ -18,11 +18,11 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
     private static final Logger log = LoggerFactory.getLogger(NettyClientHandler.class);
 
     /**
+     * @return
      * @author xieh
      * @date 2019/12/31 15:04
      * 当通道就绪就会触发这个方法
-     * @return
-    */
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
 //        super.channelActive(ctx);
@@ -31,11 +31,11 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
     }
 
     /**
+     * @return
      * @author xieh
      * @date 2019/12/31 15:12
      * 当通道有读取事件时触发
-     * @return
-    */
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 //        super.channelRead(ctx, msg);

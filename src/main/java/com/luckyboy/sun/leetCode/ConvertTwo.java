@@ -18,19 +18,19 @@ public class ConvertTwo {
      * 用了String的charAt的方法
      */
     public String convert(String msg, int rowNums) {
-        if(msg.equals(""))
+        if (msg.equals(""))
             return "";
-        if(msg.length() <= rowNums || rowNums == 1)
+        if (msg.length() <= rowNums || rowNums == 1)
             return msg;
         StringBuilder builder = new StringBuilder();
         int j = 0;
         int k = 0;
         List<String> list = new ArrayList<>();
-        int element = (2 * rowNums) -2;
+        int element = (2 * rowNums) - 2;
         k = element;
-        int index = (int)Math.ceil((double)msg.length()/(double)element);
-        for(int i =0; i < index; i++) {
-            if(i == index - 1)
+        int index = (int) Math.ceil((double) msg.length() / (double) element);
+        for (int i = 0; i < index; i++) {
+            if (i == index - 1)
                 list.add(msg.substring(j, msg.length()));
             else {
                 list.add(msg.substring(j, k));
@@ -38,44 +38,45 @@ public class ConvertTwo {
             j = j + element;
             k = k + element;
         }
-        for(int i = 0; i < rowNums; i++) {
-                for (String s : list) {
-                    if(i == 0 || i == rowNums -1) {
-                        if(i < s.length())
-                            builder.append(s.charAt(i));
-                    } else {
-                        if (i < s.length()) {
-                            builder.append(s.charAt(i));
-                        }
-                        if ((element-i) < s.length()) {
-                            builder.append(s.charAt(element-i));
-                        }
+        for (int i = 0; i < rowNums; i++) {
+            for (String s : list) {
+                if (i == 0 || i == rowNums - 1) {
+                    if (i < s.length())
+                        builder.append(s.charAt(i));
+                } else {
+                    if (i < s.length()) {
+                        builder.append(s.charAt(i));
+                    }
+                    if ((element - i) < s.length()) {
+                        builder.append(s.charAt(element - i));
                     }
                 }
+            }
 
         }
         return builder.toString();
     }
+
     /**
      * 执行用时 :11 ms, 在所有 Java 提交中击败了48.42%的用户
      * 内存消耗 :41.3 MB, 在所有 Java 提交中击败了6.81%的用户
-     *
+     * <p>
      * ******************************力扣上的解题思路，主要是flag = -flag
-     * */
+     */
     public String convert2(String s, int numRows) {
-        if(s.equals(""))
+        if (s.equals(""))
             return "";
-        if(numRows < 2) return s;
+        if (numRows < 2) return s;
         List<StringBuilder> rows = new ArrayList<StringBuilder>();
-        for(int i = 0; i < numRows; i++) rows.add(new StringBuilder());
+        for (int i = 0; i < numRows; i++) rows.add(new StringBuilder());
         int i = 0, flag = -1;
-        for(char c : s.toCharArray()) {
+        for (char c : s.toCharArray()) {
             rows.get(i).append(c);
-            if(i == 0 || i == numRows -1) flag = - flag;
+            if (i == 0 || i == numRows - 1) flag = -flag;
             i += flag;
         }
         StringBuilder res = new StringBuilder();
-        for(StringBuilder row : rows) res.append(row);
+        for (StringBuilder row : rows) res.append(row);
         return res.toString();
     }
 
