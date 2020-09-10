@@ -1,6 +1,7 @@
 package com.luckyboy.sun.test;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
 /**
  * 测试两个list取差值
@@ -24,6 +25,17 @@ public class OneTest {
         return "OneTest{" +
                 "num=" + num +
                 '}';
+    }
+    public String var() {
+        return "bb";
+    }
+    @Test
+    public void stringTest() {
+        String a = "aabb";
+        String b = "aa" + var();
+
+
+        System.out.println(a == b);
     }
 
     public static void main(String[] args) {
