@@ -1,5 +1,6 @@
 package com.luckyboy.sun.java8;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -23,6 +24,7 @@ public class OptionalTest {
 
         System.out.println(getB(user));
         System.out.println(getBT(user));
+
     }
     /**
      * 使用optional之前
