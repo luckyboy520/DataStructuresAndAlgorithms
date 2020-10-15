@@ -22,22 +22,39 @@ public class ListNodeTest {
 
         node1.next = node2;
         node2.next = node3;
-        node3.next = node4;
+//        node3.next = node4;
         node4.next = node5;
         node5.next = node6;
 
         System.out.println(node1.toString());
 
+        ListNode merge = Merge(node1, node4);
+
 /*        //翻转链表
         ListNode listNode = flipNodeG(node1);
         System.out.println("翻转结果：" + listNode.toString());*/
 
-        System.out.println(daoshuk(node1,4));
-        System.out.println(daoshuz(node1,4));
+//        System.out.println(daoshuk(node1,4));
+//        System.out.println(daoshuz(node1,4));
 
     }
 
 
+    public static ListNode Merge(ListNode list1,ListNode list2) {
+        if(list1 == null){
+            return list2;
+        }
+        if(list2 == null){
+            return list1;
+        }
+        if(list1.value <= list2.value){
+            list1.next = Merge(list1.next, list2);
+            return list1;
+        }else{
+            list2.next = Merge(list1, list2.next);
+            return list2;
+        }
+    }
 
     /**
      * 单链表的翻转
