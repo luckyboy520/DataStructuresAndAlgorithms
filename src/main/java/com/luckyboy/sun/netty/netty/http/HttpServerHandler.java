@@ -18,7 +18,7 @@ import java.net.URI;
 public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
     private static final Logger log = LoggerFactory.getLogger(HttpServerHandler.class);
 
-    @Override
+//    @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
 
         if (msg instanceof HttpRequest) {
@@ -28,21 +28,26 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
             log.info("客户端地址：{}", ctx.channel().remoteAddress());
 
             HttpRequest request = (HttpRequest) msg;
-            URI uri = new URI(request.uri());
-            if ("/favicon.ico".equals(uri.getPath())) {
-                log.info("获取页面图标不处理请求~~~~~~~~~");
-                return;
-            }
+//            URI uri = new URI(request.uri());
+//            if ("/favicon.ico".equals(uri.getPath())) {
+//                log.info("获取页面图标不处理请求~~~~~~~~~");
+//                return;
+//            }
             ByteBuf byteBuf = Unpooled.copiedBuffer("hello,luckyboy server", CharsetUtil.UTF_8);
             //构造一个httpresponse
             FullHttpResponse defaultFullHttpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, byteBuf);
-            defaultFullHttpResponse.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
-            defaultFullHttpResponse.headers().set(HttpHeaderNames.CONTENT_LENGTH, byteBuf.readableBytes());
+//            defaultFullHttpResponse.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
+//            defaultFullHttpResponse.headers().set(HttpHeaderNames.CONTENT_LENGTH, byteBuf.readableBytes());
 
             //构建后并返回
             ctx.writeAndFlush(defaultFullHttpResponse);
 
         }
+
+    }
+
+    @Override
+    protected void messageReceived(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
 
     }
 }

@@ -22,6 +22,30 @@ public class ListNode {
     ListNode(int x) {
         val = x;
     }
+
+    public int getVal() {
+        return val;
+    }
+
+    public void setVal(int val) {
+        this.val = val;
+    }
+
+    public ListNode getNext() {
+        return next;
+    }
+
+    public void setNext(ListNode next) {
+        this.next = next;
+    }
+
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "val=" + val +
+                ", next=" + next +
+                '}';
+    }
 }
 
 class AddTwoNumbers {
@@ -107,4 +131,6 @@ class AddTwoNumbers {
         System.out.println("add:" + bi1.add(bi2));
 
     }
+
+
 }
