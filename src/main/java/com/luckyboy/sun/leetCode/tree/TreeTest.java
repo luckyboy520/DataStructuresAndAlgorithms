@@ -76,13 +76,18 @@ public class TreeTest {
 }
 
 class TreeNode {
-    private Integer val;
-    private TreeNode left;
-    private TreeNode right;
-    private TreeNode next;
+    Integer val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode next;
 
     public TreeNode(Integer val) {
         this.val = val;
+    }
+    public TreeNode(Integer val,TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
     }
 
     public Integer getVal() {
